@@ -1,15 +1,16 @@
 import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
-import Card from './Card';
+import Card from '../UI/Card';
+import { useState } from "react";
 
 export default function ExpenseItem(props) {
+  const [title, setTitle] = useState(props.expense.title);
+  
   const expense = { ...props.expense };
   
-  let title = expense.title;
-  
   const clickHandler = () => {
-    console.log('clicked');
-    title = 'Updated!';
+    setTitle('Updated!');
+    console.log(title)
   }
   
   return (
