@@ -6,19 +6,20 @@ import {useState} from "react";
 
 export default function Expenses(props) {
   const [selectedYear, setSelectedYear] = useState('2020');
-  const expenses = props.expenses;
   const expenseYearChangeHandler = (year) => {
     setSelectedYear(year);
   }
+  const filteredExpenses = props.expenses.filter(expense => expense.date.getFullYear() === +selectedYear);
   
   return (
     <div>
       <Card className="expenses">
         <ExpensesFilter
+          selectedYear={selectedYear}
           onExepnseYearChange={expenseYearChangeHandler}
         />
         {
-          expenses.map(expense => <ExpenseItem key={expense.id} expense={expense}/>)
+          filteredExpenses.map(expense => <ExpenseItem key={expense.id} expense={expense}/>)
         }
       </Card>
     </div>
