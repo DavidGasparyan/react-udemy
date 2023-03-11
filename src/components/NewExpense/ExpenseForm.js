@@ -18,7 +18,7 @@ export default function ExpenseForm(props) {
     event.preventDefault();
     const expenseDate = {
       title,
-      amount,
+      amount: +amount,
       date: new Date(date),
     }
     
