@@ -1,73 +1,35 @@
-import './ExpenseForm.css';
 import {useState} from "react";
+import './ExpenseForm.css';
 
 export default function ExpenseForm(props) {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
-  
-  // const [userInput, setUserInput] = useState({
-  //   title: '',
-  //   amount: '',
-  //   date: '',
-  // })
-  
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   title: event.target.value
-    // })
-    // setUserInput((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     title: event.target.value
-    //   }
-    // })
-  }
-  
+  };
   const amountChangeHandler = (event) => {
     setAmount(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   amount: event.target.value
-    // })
-    // setUserInput((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     amount: event.target.value
-    //   }
-    // })
-  }
-  
+  };
   const dateChangeHandler = (event) => {
     setDate(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   date: event.target.value
-    // })
-    // setUserInput((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     date: event.target.value
-    //   }
-    // })
-  }
-  
+  };
   const submitHandler = (event) => {
     event.preventDefault();
-    
     const expenseDate = {
       title,
       amount,
       date: new Date(date),
     }
-  
+    
     setTitle('');
     setAmount('');
     setDate('');
     props.onSaveExpenseData(expenseDate);
-  }
+  };
+  const hideExpenseFormHandler = () => {
+    props.onHideEpenseForm();
+  };
   
   return (
     <form onSubmit={submitHandler}>
@@ -86,6 +48,7 @@ export default function ExpenseForm(props) {
         </div>
       </div>
       <div className='new-expense__actions'>
+        <button onClick={hideExpenseFormHandler}>Cancel</button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
