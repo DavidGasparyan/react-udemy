@@ -11,6 +11,7 @@ export default function NewExpense(props) {
     };
     
     props.onAddExpense(expenseData);
+    setIsExpenseFormHidden(true);
   }
   const hideExpenseFormHandler = () => {
     setIsExpenseFormHidden(true);
